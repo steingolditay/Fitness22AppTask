@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Fitness22</string>
     <string name="top_bar_title">My Workouts</string>
+    <string name="start_workout">START WORKOUT</string>
 </resources>

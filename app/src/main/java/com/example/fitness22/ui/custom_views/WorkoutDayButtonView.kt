@@ -15,8 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.fitness22.R
 
@@ -33,10 +34,19 @@ fun WorkoutDayButtonView(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(horizontal = 8.dp)
-            .widthIn(60.dp)
+            .widthIn(70.dp)
             .height(40.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(Color.Gray)
+            .background(
+                colorResource(
+                    if (isSelected){
+                        R.color.background_dark
+                    } else {
+                        R.color.background_light
+                    }
+                )
+
+            )
             .then(
                 if (!isSelected){
                     Modifier.clickable {
@@ -55,13 +65,14 @@ fun WorkoutDayButtonView(
                 modifier = Modifier.size(24.dp),
                 painter = painterResource(R.drawable.check),
                 contentDescription =  "Day $dayNumber",
-                tint = Color.White
+                tint = colorResource(R.color.light_blue)
             )
 
         } else {
             Text(
                 text = "Day $dayNumber",
-                color = Color.White
+                fontWeight = FontWeight.Black,
+                color = colorResource(R.color.light_blue)
             )
         }
 

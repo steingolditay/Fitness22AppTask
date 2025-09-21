@@ -12,9 +12,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.fitness22.R
 
 
@@ -26,14 +29,16 @@ fun HorizontalBarItemView(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(horizontal = 4.dp)
-            .clip(RoundedCornerShape(4.dp))
-            .background(Color.Gray)
-            .padding(2.dp)
+            .padding(horizontal = 4.dp, vertical = 8.dp)
+            .clip(RoundedCornerShape(32.dp))
+            .background(colorResource(R.color.background_dark))
+            .padding(horizontal = 16.dp, vertical = 8.dp)
 
     ){
         Text(
             text = title,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
             color = Color.White
         )
         Icon(

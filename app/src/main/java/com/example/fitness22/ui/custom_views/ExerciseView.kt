@@ -1,9 +1,7 @@
 package com.example.fitness22.ui.custom_views
 
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,7 +10,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,10 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.fitness22.R
 import com.example.fitness22.domain.Exercise
 
 
@@ -51,10 +46,9 @@ fun ExerciseView(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
-            .padding(vertical = 4.dp)
+            .padding(vertical = 16.dp, horizontal = 4.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
-            .background(Color.Green)
             .padding(8.dp)
 
     ){
@@ -62,13 +56,19 @@ fun ExerciseView(
         Image(
             bitmap = getImageBitmapByName(exercise.exerciseThumbnail),
             contentDescription = "",
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier
+                .size(72.dp)
+                .clip(RoundedCornerShape(8.dp))
         )
 
-        Column(modifier = Modifier.weight(1f).padding(horizontal = 4.dp)) {
+        Column(
+            modifier = Modifier
+                .weight(1f)
+                .padding(horizontal = 16.dp)) {
             Text(
                 text = exercise.exerciseName,
-                color = Color.White
+                color = Color.White,
+                fontWeight = FontWeight.SemiBold
             )
             Text(
                 text = getInfoString(),
@@ -80,7 +80,9 @@ fun ExerciseView(
         Image(
             bitmap = getImageBitmapByName(exercise.muscleGroupImage),
             contentDescription = "",
-            modifier = Modifier.size(24.dp).clip(CircleShape)
+            modifier = Modifier
+                .size(48.dp)
+                .clip(CircleShape)
         )
 
 
