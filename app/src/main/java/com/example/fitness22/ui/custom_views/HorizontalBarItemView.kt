@@ -19,7 +19,7 @@ import com.example.fitness22.R
 
 
 @Composable
-fun HorizontalBarItem(
+fun HorizontalBarItemView(
     title: String
 ) {
     Row(
@@ -33,7 +33,7 @@ fun HorizontalBarItem(
 
     ){
         Text(
-            text = "Some title",
+            text = title,
             color = Color.White
         )
         Icon(
@@ -47,5 +47,5 @@ fun HorizontalBarItem(
 @Composable
 @Preview
 fun HorizontalBarItemPreview(){
-    HorizontalBarItem("some title")
+    HorizontalBarItemView("some title")
 }
