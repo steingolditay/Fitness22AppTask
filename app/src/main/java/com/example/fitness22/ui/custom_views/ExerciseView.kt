@@ -1,5 +1,8 @@
 package com.example.fitness22.ui.custom_views
 
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,6 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -27,37 +33,52 @@ import com.example.fitness22.domain.Exercise
 fun ExerciseView(
     exercise: Exercise
 ) {
+    val context = LocalContext.current
+
+    fun getInfoString(): String {
+        return with(exercise){
+            "$amountOfSets sets x $repRange reps x $weightAmount lb"
+        }
+
+    }
+
+    fun getImageBitmapByName(imageName: String): ImageBitmap {
+        val inputStream = context.assets.open(imageName)
+        return BitmapFactory.decodeStream(inputStream).asImageBitmap()
+    }
+
     Row(
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
+            .padding(vertical = 4.dp)
             .fillMaxWidth()
             .clip(RoundedCornerShape(8.dp))
             .background(Color.Green)
-            .padding(2.dp)
+            .padding(8.dp)
 
     ){
         // exercise icon
-        Icon(
-            painter = painterResource(R.drawable.ic_edit),
+        Image(
+            bitmap = getImageBitmapByName(exercise.exerciseThumbnail),
             contentDescription = "",
             modifier = Modifier.size(48.dp)
         )
 
-        Column {
+        Column(modifier = Modifier.weight(1f).padding(horizontal = 4.dp)) {
             Text(
-                text = "exercise name",
+                text = exercise.exerciseName,
                 color = Color.White
             )
             Text(
-                text = "exercise info",
+                text = getInfoString(),
                 color = Color.White
             )
         }
 
         // muscle icon
-        Icon(
-            painter = painterResource(R.drawable.ic_edit),
+        Image(
+            bitmap = getImageBitmapByName(exercise.muscleGroupImage),
             contentDescription = "",
             modifier = Modifier.size(24.dp).clip(CircleShape)
         )
